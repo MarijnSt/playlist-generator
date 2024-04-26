@@ -1,7 +1,6 @@
 <?php
 
+use App\Actions\Dashboard\RenderDashboard;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', RenderDashboard::class)->name('app.dashboard');
