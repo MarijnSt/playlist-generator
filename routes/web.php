@@ -3,4 +3,4 @@
 use App\Actions\Dashboard\RenderDashboard;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', RenderDashboard::class)->name('app.dashboard');
+Route::get('/', RenderDashboard::class)->name('dashboard');
