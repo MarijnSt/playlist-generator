@@ -3,7 +3,6 @@
 use App\Actions\Auth\LoginWithSpotify;
 use App\Actions\Auth\Logout;
 use App\Actions\Dashboard\RenderDashboard;
-use App\Actions\Spotify\GetArtist;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -19,5 +18,5 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::prefix('spotify')->group(function () {
-    Route::get('/artist/{id}', GetArtist::class)->name('spotify.artist');
+    //
 });
