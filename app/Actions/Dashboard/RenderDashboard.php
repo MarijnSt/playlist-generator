@@ -12,6 +12,11 @@ class RenderDashboard
 
     public function asController(): Response
     {
-        return Inertia::render('Dashboard/Index');
+        return Inertia::render(
+            component:'Dashboard/Index',
+            props: [
+                'user' => auth()->user(),
+            ]
+        );
     }
 }
