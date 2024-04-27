@@ -1,13 +1,12 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
-console.log('ieps')
 </script>
 
 <template>
     <Head>
         <title>Home</title>
     </Head>
-    <p>IEPS</p>
+    <a :href="route('auth.spotify')">Logins with Spotify</a>
 </template>
 
 <style scoped>
