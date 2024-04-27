@@ -28,9 +28,11 @@ class LoginWithSpotify
 
         // save tokens in session
         session([
-            'spotify_token' => $spotifyUser->token,
-            'spotify_refresh_token' => $spotifyUser->refreshToken,
-            'spotify_expires_in' => now()->addSeconds($spotifyUser->expiresIn),
+            'auth' => [
+                'spotify_token' => $spotifyUser->token,
+                'spotify_refresh_token' => $spotifyUser->refreshToken,
+                'spotify_expires_in' => now()->addSeconds($spotifyUser->expiresIn),
+            ]
         ]);
 
         // authenticate user
