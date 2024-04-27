@@ -10,6 +10,7 @@ You can look at [this](https://developer.spotify.com/documentation/web-api/tutor
 
 ## How to install
 - cp .env.example .env
+- add your client id and client secret to the .env file
 - composer install
 - php artisan key:generate
 - php artisan migrate
@@ -17,5 +18,18 @@ You can look at [this](https://developer.spotify.com/documentation/web-api/tutor
 - npm install
 - npm run dev
 
+## Resources
+- [Laravel](https://laravel.com/docs/11.x)
+- [Inertia](https://inertiajs.com/)
+- [Vue](https://vuejs.org/guide/introduction.html)
+- [Spotify API](https://developer.spotify.com/documentation/web-api/)
+- [Laravel Actions](https://www.laravelactions.com/)
+
 ## TODO
-...
+- Authenticate with spotify
+- Get the user's playlists
+- Let the user select playlists to be used to generate the new playlist
+- Let the user specify the length of the new playlist
+- Generate a new playlist by randomly selecting songs from those playlists
+- Let the user swap out songs they don't like
+- Save the playlist to their spotify account

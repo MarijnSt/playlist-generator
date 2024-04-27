@@ -10,7 +10,7 @@ use Tests\TestCase;
 class GetArtistTest extends TestCase
 {
     /**
-     * A basic test to retrieve the spotify user to test the connection.
+     * A basic test to retrieve a spotify artist to test the connection.
      */
     public function test_artist_can_be_retrieved(): void
     {
