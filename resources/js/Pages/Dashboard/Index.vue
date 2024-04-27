@@ -1,13 +1,16 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
-console.log('ieps')
+import Greeting from "../../Components/Greeting.vue";
+const props = defineProps({
+    user: Object
+})
 </script>
 
 <template>
     <Head>
         <title>Home</title>
     </Head>
-    <p>IEPS</p>
+    <Greeting :user="user" />
 </template>
 
 <style scoped>
