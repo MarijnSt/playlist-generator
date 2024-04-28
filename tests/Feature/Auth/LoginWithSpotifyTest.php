@@ -35,5 +35,11 @@ class LoginWithSpotifyTest extends TestCase
 
         $this->assertAuthenticated();
         $response->assertRedirect(route('dashboard'));
+        // TODO: assert if session has the tokens
+    }
+
+    public function test_refresh_token_is_used_for_new_access_token(): void
+    {
+        // TODO
     }
 }

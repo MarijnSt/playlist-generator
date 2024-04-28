@@ -26,8 +26,11 @@ You can look at [this](https://developer.spotify.com/documentation/web-api/tutor
 - [Laravel Actions](https://www.laravelactions.com/)
 
 ## TODO
-- Authenticate with spotify
 - Get the user's playlists
+  - Create data object to format the playlists: what do we need (name, id, image, tracks, ?...)
+- Implement refresh token flow
+- Get all songs from the user's playlists
+...
 - Let the user select playlists to be used to generate the new playlist
 - Let the user specify the length of the new playlist
 - Generate a new playlist by randomly selecting songs from those playlists
