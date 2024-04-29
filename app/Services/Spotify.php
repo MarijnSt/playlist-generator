@@ -63,6 +63,7 @@ class Spotify
         session([
             'auth' => [
                 'spotify_token' => $this->accessToken,
+                'spotify_refresh_token' => $this->refreshToken,
                 'spotify_expires_in' => $this->expiresIn,
             ]
         ]);
