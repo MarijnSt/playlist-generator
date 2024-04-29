@@ -18,11 +18,15 @@ class GetUsersPlaylists
     {
         // get user
         $user = auth()->user();
+        if (!$user) {
+            abort(401);
+        }
 
         // make spotify request for playlists
         $response = $this->spotify->request(
             method: 'GET',
-            endpoint: "users/$user->spotify_id/playlists");
+            endpoint: "users/$user->spotify_id/playlists"
+        );
 
         /**
          * TODO

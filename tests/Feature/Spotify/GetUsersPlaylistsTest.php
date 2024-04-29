@@ -57,8 +57,25 @@ class GetUsersPlaylistsTest extends TestCase
         $response->assertStatus(200);
     }
 
-    /*public function test_user_has_to_be_authenticated(): void
+    public function test_user_has_to_be_authenticated(): void
     {
-        // TODO
-    }*/
+        $response = $this->withSession([
+            'auth' => [
+                'spotify_token' => $this->faker->sha256,
+                'spotify_refresh_token' => $this->faker->sha256,
+                'spotify_expires_in' => now()->addSeconds(3600),
+            ],
+        ])->get('/spotify/playlists');
+
+        $response->assertStatus(401);
+    }
+
+    public function test_request_fails_without_tokens_in_session(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/spotify/playlists');
+
+        $response->assertStatus(500);
+    }
 }
