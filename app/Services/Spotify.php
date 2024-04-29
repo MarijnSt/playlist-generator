@@ -21,9 +21,6 @@ class Spotify
         $this->clientId = config('services.spotify.client_id');
         $this->clientSecret = config('services.spotify.client_secret');
         $this->baseUrl = config('services.spotify.base_url');
-        $this->accessToken = session('auth.spotify_token');
-        $this->refreshToken = session('auth.spotify_refresh_token');
-        $this->expiresIn = session('auth.spotify_expires_in');
     }
 
     /**
@@ -32,11 +29,43 @@ class Spotify
      */
     protected function getAccessToken(): string
     {
+        // get tokens from session
+        $this->accessToken = session('auth.spotify_token');
+        $this->refreshToken = session('auth.spotify_refresh_token');
+        $this->expiresIn = session('auth.spotify_expires_in');
+
+        // refresh token if it has expired
         if ($this->expiresIn->isPast()) {
-            // TODO: use refresh token to get a new access token
+            $this->useRefreshToken();
         }
 
         return $this->accessToken;
+    }
+
+    private function useRefreshToken(): void
+    {
+        $response = Http::withHeaders([
+            'Authorization' => 'Basic ' . base64_encode($this->clientId . ':' . $this->clientSecret),
+        ])->asForm()->post('https://accounts.spotify.com/api/token', [
+            'grant_type' => 'refresh_token',
+            'refresh_token' => $this->refreshToken,
+        ]);
+
+        if ($response->failed()) {
+            $response->throw();
+        }
+
+        $data = $response->json();
+        $this->accessToken = $data['access_token'];
+        $this->expiresIn = now()->addSeconds($data['expires_in']);
+
+        // update session
+        session([
+            'auth' => [
+                'spotify_token' => $this->accessToken,
+                'spotify_expires_in' => $this->expiresIn,
+            ]
+        ]);
     }
 
     /**
