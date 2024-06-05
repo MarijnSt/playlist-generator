@@ -2,7 +2,10 @@
 
 namespace App\Actions\Spotify;
 
+use App\Data\Spotify\PlaylistData;
+use App\Data\Spotify\PlaylistsData;
 use App\Services\Spotify;
+use Illuminate\Support\Facades\Storage;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 class GetUsersPlaylists
@@ -39,10 +42,18 @@ class GetUsersPlaylists
             $this->offset += $this->limit;
         } while ($data['next']);
 
-        return $playlists;
+        // loop through the playlists and format them
+        return array_map(function ($playlist) {
+            return PlaylistData::from([
+                'id' => $playlist['id'],
+                'name' => $playlist['name'],
+                'image' => $this->getImageUrl($playlist['images']),
+                'count' => $playlist['tracks']['total'],
+            ]);
+        }, $playlists);
     }
 
-    public function asController()
+    public function asController(): PlaylistsData
     {
         // get user
         $user = auth()->user();
@@ -51,12 +62,28 @@ class GetUsersPlaylists
         }
 
         $playlists = $this->handle();
-        //dd($playlists);
 
-        /**
-         * TODO
-         * - implement data object to return formatted playlist
-         */
-        return response()->json($playlists);
+        return PlaylistsData::from([
+            'playlists' => $playlists,
+            'count' => count($playlists),
+        ]);
+    }
+
+    private function getImageUrl(array $images): string
+    {
+        /*
+         * Spotify returns three images if they auto-generated the mosaic,
+         * it returns one image if the playlist doesn't have enough tracks,
+         * it also returns one image if the playlist has a custom image,
+         * and it returns an empty array if the playlist has no image
+         * */
+
+        if (count($images) === 3) {
+            return $images[1]['url'];
+        } elseif (count($images) === 1) {
+            return $images[0]['url'];
+        } else {
+            return Storage::url('images/default-playlist-image.png');
+        }
     }
 }
