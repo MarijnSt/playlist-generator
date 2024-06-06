@@ -26,7 +26,7 @@ You can look at [this](https://developer.spotify.com/documentation/web-api/tutor
 - [Laravel Actions](https://www.laravelactions.com/)
 
 ## TODO
-- Implement refresh token flow
+- Show the user's playlists on the front
 - Get all songs from the user's playlists
 ...
 - Let the user select playlists to be used to generate the new playlist
@@ -34,3 +34,4 @@ You can look at [this](https://developer.spotify.com/documentation/web-api/tutor
 - Generate a new playlist by randomly selecting songs from those playlists
 - Let the user swap out songs they don't like
 - Save the playlist to their spotify account
+- Check refresh token flow
