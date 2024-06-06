@@ -2,11 +2,16 @@
 
 namespace Tests\Feature\Spotify;
 
+use App\Actions\Spotify\GetUsersPlaylists;
+use App\Data\Spotify\PlaylistData;
+use App\Data\Spotify\PlaylistsData;
 use App\Models\User;
+use App\Services\Spotify;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
+use function PHPUnit\Framework\assertEquals;
 
 class GetUsersPlaylistsTest extends TestCase
 {
@@ -19,14 +24,31 @@ class GetUsersPlaylistsTest extends TestCase
             [
                 'name' => $this->faker->sentence(3),
                 'id' => $this->faker->randomNumber(5, true),
+                'images' => [
+                    ['url' => $this->faker->imageUrl()],
+                ],
+                'tracks' => [
+                    'total' => $this->faker->randomNumber()
+                ],
+                'other-property' => 'test'
             ],
             [
                 'name' => $this->faker->sentence(3),
                 'id' => $this->faker->randomNumber(5, true),
+                'images' => [
+                    ['url' => $this->faker->imageUrl()],
+                ],
+                'tracks' => [
+                    'total' => $this->faker->randomNumber()
+                ]
             ],
             [
                 'name' => $this->faker->sentence(3),
                 'id' => $this->faker->randomNumber(5, true),
+                'images' => [],
+                'tracks' => [
+                    'total' => $this->faker->randomNumber()
+                ]
             ],
         ];
 
@@ -35,8 +57,9 @@ class GetUsersPlaylistsTest extends TestCase
 
         // mock the http client to simulate the response from the Spotify API
         Http::fake([
-            "https://api.spotify.com/v1/users/$user->spotify_id/playlists" => Http::response([
+            "https://api.spotify.com/v1/me/playlists?offset=0&limit=50" => Http::response([
                 'items' => $playListItems,
+                'next' => null,
             ]),
         ]);
 
@@ -51,10 +74,26 @@ class GetUsersPlaylistsTest extends TestCase
 
         // assert if user's spotify id is used in the request
         Http::assertSent(function ($request) use ($user) {
-            return $request->url() == "https://api.spotify.com/v1/users/$user->spotify_id/playlists";
+            return str_contains($request->url(), "https://api.spotify.com/v1/me/playlists");
         });
 
         $response->assertStatus(200);
+
+        // create an instance of GetUsersPlaylists to get the getImageUrl function
+        $getUsersPlaylists = new GetUsersPlaylists(new Spotify());
+
+        // assert if response has the correct structure
+        assertEquals($response->json(), [
+            'playlists' => array_map(function ($playlist) use ($getUsersPlaylists) {
+                return [
+                    'id' => $playlist['id'],
+                    'name' => $playlist['name'],
+                    'image' => $getUsersPlaylists->getImageUrl($playlist['images']),
+                    'count' => $playlist['tracks']['total'],
+                ];
+            }, $playListItems),
+            'count' => count($playListItems),
+        ]);
     }
 
     public function test_user_has_to_be_authenticated(): void

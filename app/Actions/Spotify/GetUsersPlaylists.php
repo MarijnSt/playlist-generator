@@ -42,15 +42,7 @@ class GetUsersPlaylists
             $this->offset += $this->limit;
         } while ($data['next']);
 
-        // loop through the playlists and format them
-        return array_map(function ($playlist) {
-            return PlaylistData::from([
-                'id' => $playlist['id'],
-                'name' => $playlist['name'],
-                'image' => $this->getImageUrl($playlist['images']),
-                'count' => $playlist['tracks']['total'],
-            ]);
-        }, $playlists);
+        return $playlists;
     }
 
     public function asController(): PlaylistsData
@@ -64,12 +56,19 @@ class GetUsersPlaylists
         $playlists = $this->handle();
 
         return PlaylistsData::from([
-            'playlists' => $playlists,
+            'playlists' => array_map(function ($playlist) {
+                return PlaylistData::from([
+                    'id' => $playlist['id'],
+                    'name' => $playlist['name'],
+                    'image' => $this->getImageUrl($playlist['images']),
+                    'count' => $playlist['tracks']['total'],
+                ]);
+            }, $playlists),
             'count' => count($playlists),
         ]);
     }
 
-    private function getImageUrl(array $images): string
+    public function getImageUrl(array $images): string
     {
         /*
          * Spotify returns three images if they auto-generated the mosaic,
