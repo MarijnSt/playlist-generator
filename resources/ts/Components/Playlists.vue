@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
+import { PlaylistData } from "@/types/generated";
 import axios from 'axios';
 import LoadingSpinner from "./LoadingSpinner.vue";
 
 let loading = ref(true);
 
-let playlists = ref([]);
+let playlists = ref<PlaylistData[]>([]);
 
 onMounted(async () => {
-    // get playlists from /spotify/playlists endpoint
+    // get playlists
     try {
         const response = await axios.get('/spotify/playlists');
         console.log(response.data)

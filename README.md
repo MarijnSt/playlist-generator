@@ -18,6 +18,13 @@ You can look at [this](https://developer.spotify.com/documentation/web-api/tutor
 - npm install
 - npm run dev
 
+## Transforming laravel Data to Typescript for front
+When you add new data objects in the backend, you need to run this command:
+```
+php artisan typescript:transform
+```
+This will create or update the resources/js/types/generated.ts file which you can use to import the types in the front.
+
 ## Resources
 - [Laravel](https://laravel.com/docs/11.x)
 - [Inertia](https://inertiajs.com/)
