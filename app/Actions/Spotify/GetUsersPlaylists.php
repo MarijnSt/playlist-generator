@@ -39,7 +39,7 @@ class GetUsersPlaylists
 
             $playlists = array_merge($playlists, $data['items']);
 
-            $this->offset += $this->limit;
+            $this->offset += $this->limit + 1;
         } while ($data['next']);
 
         return $playlists;
