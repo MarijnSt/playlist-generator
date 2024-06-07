@@ -60,7 +60,7 @@ class GetUsersPlaylists
                 return PlaylistData::from([
                     'id' => $playlist['id'],
                     'name' => $playlist['name'],
-                    'image' => $this->getImageUrl($playlist['images']),
+                    'image' => $this->getImageUrl($playlist['images'] ?? []),
                     'count' => $playlist['tracks']['total'],
                 ]);
             }, $playlists),
