@@ -4,9 +4,10 @@ import { PlaylistData } from "@/types/generated";
 import axios from 'axios';
 import LoadingSpinner from "./LoadingSpinner.vue";
 
-let loading = ref(true);
+const loading = ref(true);
 
-let playlists = ref<PlaylistData[]>([]);
+const playlists = ref<PlaylistData[]>([]);
+const selectedPlaylists = ref();
 
 onMounted(async () => {
     // get playlists
@@ -23,13 +24,70 @@ onMounted(async () => {
 
 <template>
     <LoadingSpinner v-if="loading"/>
-    <div v-else class="playlist-table">
-        <ul>
-            <li v-for="playlist in playlists" :key="playlist.id">{{ playlist.name }}</li>
-        </ul>
+    <div v-else class="playlists-container">
+        <!-- Unselected playlists -->
+        <DataTable
+            :value="playlists"
+            v-model:selection="selectedPlaylists"
+            selectionMode="multiple"
+            :metaKeySelection="false"
+            dataKey="id"
+            paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]"
+            class="playlist-table"
+            tableStyle="min-width: 50rem">
+
+            <template #header>
+                <div class="table-header">
+                    <span class="title">Your playlists</span>
+                </div>
+            </template>
+            <Column header="" headerStyle="width: 5rem">
+                <template #body="slotProps">
+                    <img :src="slotProps.data.image" :alt="slotProps.data.name" class="w-6rem playlist-image" />
+                </template>
+            </Column>
+            <Column field="name" header="Name"></Column>
+        </DataTable>
+
+        <!-- Selected playlists -->
+        <DataTable
+            :value="selectedPlaylists"
+            class="playlist-table"
+            scrollable scrollHeight="400px" :virtualScrollerOptions="{ itemSize: 46 }"
+            tableStyle="min-width: 50rem">
+
+            <Column headerStyle="width: 5rem">
+                <template #body="slotProps">
+                    <img :src="slotProps.data.image" :alt="slotProps.data.name" class="w-6rem playlist-image" />
+                </template>
+            </Column>
+            <Column field="name"></Column>
+        </DataTable>
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+.playlist-table {
+    margin-top: 1rem;
+    .table-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
 
+        .title {
+            font-size: 1.25rem;
+            color: #212121;
+            font-weight: bold;
+        }
+    }
+
+    .playlist-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+}
 </style>

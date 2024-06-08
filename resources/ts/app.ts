@@ -5,6 +5,15 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from 'ziggy-js';
 
+import PrimeVue from 'primevue/config';
+// Import PrimeVue UI Theme
+import 'primevue/resources/themes/aura-light-green/theme.css'
+// Import PrimeVue UI Components
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';   // optional
+import Row from 'primevue/row';                   // optional
+
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || '';
 
 createInertiaApp({
@@ -17,6 +26,11 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(PrimeVue)
+            .component('DataTable', DataTable)
+            .component('Column', Column)
+            .component('ColumnGroup', ColumnGroup)
+            .component('Row', Row)
             .mount(el)
     },
 })

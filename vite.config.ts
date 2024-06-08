@@ -20,6 +20,8 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
+            '@': '/resources/ts',
+            '@scss': '/resources/scss',
             'ziggy-js': path.resolve('vendor/tightenco/ziggy'),
         },
     },
