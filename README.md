@@ -1,7 +1,14 @@
 ## About project
 
 This project is a simple implementation of the spotify API to create playlists for when I go for a run.
-It is a laravel project that uses Inertia and Vue3 to create the frontend.
+
+## Tech used
+
+- Laravel: authentication, spotify API, laravel actions and data objects
+- Inertia: connects Vue and Laravel
+- Vue: frontend with Primevue UI components
+- Vite: frontend build tool
+- Pinia: state management
 
 ## Requirements
 You need to have a spotify account and create a new app in the spotify developer dashboard.
@@ -31,6 +38,9 @@ This will create or update the resources/js/types/generated.ts file which you ca
 - [Vue](https://vuejs.org/guide/introduction.html)
 - [Spotify API](https://developer.spotify.com/documentation/web-api/)
 - [Laravel Actions](https://www.laravelactions.com/)
+- [Laravel Data](https://spatie.be/docs/laravel-data/v4/introduction)
+- [Primevue](https://primevue.org/introduction/)
+- [Pinia](https://pinia.vuejs.org/introduction.html)
 
 ## TODO
 - Show the user's playlists on the front

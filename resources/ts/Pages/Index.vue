@@ -4,6 +4,9 @@ import Greeting from "../Components/Greeting.vue";
 import Playlists from "../Components/Playlists.vue";
 import Duration from "@/Components/Duration.vue";
 import Generate from "@/Components/Generate.vue";
+import { usePlaylistsStore } from "@/store";
+
+const store = usePlaylistsStore();
 
 const props = defineProps({
     user: Object
@@ -16,9 +19,13 @@ const props = defineProps({
             <title>Home</title>
         </Head>
         <Greeting :user="user" />
-        <Playlists v-if="user"/>
-        <Duration />
-        <Generate />
+        <template v-if="user">
+            <Playlists />
+            <template v-if="store.selectedPlaylists.length > 0">
+                <Duration/>
+                <Generate/>
+            </template>
+        </template>
     </div>
 </template>
 

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-
 import { ref } from 'vue';
+import { usePlaylistsStore } from "@/store";
 
+const store = usePlaylistsStore();
 const duration = ref(0);
 
 </script>

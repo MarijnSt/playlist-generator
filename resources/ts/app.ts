@@ -5,6 +5,7 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from 'ziggy-js';
 import PrimeVue from 'primevue/config';
+import { createPinia } from 'pinia';
 
 // Import PrimeVue UI Theme
 import 'primevue/resources/themes/aura-light-green/theme.css'
@@ -19,6 +20,9 @@ import Button from 'primevue/button';
 // import styling
 import "@scss/index.scss";
 
+// state management
+const pinia = createPinia();
+
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || '';
 
 createInertiaApp({
@@ -30,6 +34,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(pinia)
             .use(ZiggyVue)
             .use(PrimeVue)
             .component('DataTable', DataTable)

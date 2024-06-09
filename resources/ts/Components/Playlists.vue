@@ -1,21 +1,28 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
+import { usePlaylistsStore } from "@/store";
 import {PlaylistData, PlaylistsData} from "@/types/generated";
 import axios from 'axios';
 import LoadingSpinner from "./LoadingSpinner.vue";
 
+const store = usePlaylistsStore();
 const loading = ref(true);
-
-const playlists = ref<PlaylistData[]>([]);
-const selectedPlaylists = ref<PlaylistData[]>();
+const playlists = computed<PlaylistData[]>(() => store.playlists);
+//const selectedPlaylists = computed<PlaylistData[]>(() => store.selectedPlaylists);
+const selectedPlaylists = computed<PlaylistData[]>({
+    get: () => store.selectedPlaylists,
+    set: (value) => store.selectedPlaylists = value,
+});
 
 onMounted(async () => {
     // get playlists
     try {
         const response = await axios.get('/spotify/playlists');
         console.log(response.data)
-        playlists.value = response.data.playlists;
+        console.log(store.selectedPlaylists)
+        store.playlists = response.data.playlists;
         loading.value = false;
+        console.log(store)
     } catch (error) {
         console.error(error)
     }
@@ -33,8 +40,7 @@ onMounted(async () => {
             :metaKeySelection="false"
             dataKey="id"
             paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]"
-            class="playlist-table"
-            tableStyle="min-width: 50rem">
+            class="playlist-table">
 
             <template #header>
                 <div class="table-header">
@@ -53,10 +59,12 @@ onMounted(async () => {
         <DataTable
             v-if="selectedPlaylists && selectedPlaylists.length > 0"
             :value="selectedPlaylists"
-            class="playlist-table"
+            v-model:selection="selectedPlaylists"
+            selectionMode="multiple"
+            :metaKeySelection="false"
+            dataKey="id"
             scrollable scrollHeight="400px" :virtualScrollerOptions="{ itemSize: 46 }"
-            tableStyle="min-width: 50rem">
-
+            class="playlist-table selection">
             <Column headerStyle="width: 5rem">
                 <template #body="slotProps">
                     <img :src="slotProps.data.image" :alt="slotProps.data.name" class="w-6rem playlist-image" />
@@ -70,6 +78,12 @@ onMounted(async () => {
 <style scoped lang="scss">
 .playlist-table {
     margin-top: 1rem;
+    width: 100%;
+
+    &.selection {
+        background: #eaeaea;
+    }
+
     .table-header {
         display: flex;
         flex-wrap: wrap;
