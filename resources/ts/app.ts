@@ -14,6 +14,7 @@ import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';
 import Row from 'primevue/row';
 import InputNumber from 'primevue/inputnumber';
+import Button from 'primevue/button';
 
 // import styling
 import "@scss/index.scss";
@@ -36,6 +37,7 @@ createInertiaApp({
             .component('ColumnGroup', ColumnGroup)
             .component('Row', Row)
             .component('InputNumber', InputNumber)
+            .component('Button', Button)
             .mount(el)
     },
 })
