@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Actions\Dashboard;
+namespace App\Actions\Index;
 
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Inertia\Response;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class RenderDashboard
+class RenderIndex
 {
     use AsAction;
 
     public function asController(): Response
     {
         return Inertia::render(
-            component:'Dashboard/Index',
+            component:'Index',
             props: [
                 'user' => auth()->user(),
             ]

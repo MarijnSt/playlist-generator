@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import Greeting from "../../Components/Greeting.vue";
-import Playlists from "../../Components/Playlists.vue";
+import Greeting from "../Components/Greeting.vue";
+import Playlists from "../Components/Playlists.vue";
 
 const props = defineProps({
     user: Object

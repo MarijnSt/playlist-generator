@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Feature\Dashboard;
+namespace Tests\Feature\Index;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
-class RenderDashboardTest extends TestCase
+class RenderIndexTest extends TestCase
 {
     public function test_dashboard_can_be_rendered(): void
     {
@@ -15,6 +15,6 @@ class RenderDashboardTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertInertia(fn (Assert $page) => $page->component('Dashboard/Index'));
+            ->assertInertia(fn (Assert $page) => $page->component('Index'));
     }
 }

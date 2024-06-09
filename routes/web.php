@@ -2,12 +2,12 @@
 
 use App\Actions\Auth\LoginWithSpotify;
 use App\Actions\Auth\Logout;
-use App\Actions\Dashboard\RenderDashboard;
+use App\Actions\Index\RenderIndex;
 use App\Actions\Spotify\GetUsersPlaylists;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
-Route::get('/', RenderDashboard::class)->name('dashboard');
+Route::get('/', RenderIndex::class)->name('dashboard');
 
 Route::prefix('auth')->group(function () {
     Route::get('/spotify', fn() => Socialite::driver('spotify')
