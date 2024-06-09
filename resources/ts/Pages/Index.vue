@@ -10,12 +10,14 @@ const props = defineProps({
 </script>
 
 <template>
-    <Head>
-        <title>Home</title>
-    </Head>
-    <Greeting :user="user" />
-    <Playlists v-if="user"/>
-    <Duration />
+    <div class="app-container">
+        <Head>
+            <title>Home</title>
+        </Head>
+        <Greeting :user="user" />
+        <Playlists v-if="user"/>
+        <Duration />
+    </div>
 </template>
 
 <style scoped>

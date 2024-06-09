@@ -24,7 +24,7 @@ onMounted(async () => {
 
 <template>
     <LoadingSpinner v-if="loading"/>
-    <div v-else class="playlists-container">
+    <div v-else class="component-container">
         <!-- Unselected playlists -->
         <DataTable
             :value="playlists"

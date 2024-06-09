@@ -1,0 +1,30 @@
+body {
+    //font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    //color: #333;
+    //background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+
+    #app {
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+
+        .app-container {
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            gap: 5rem;
+            max-width: 55rem;
+            text-align: center;
+        }
+
+        .component-container {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

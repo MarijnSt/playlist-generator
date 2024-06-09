@@ -17,9 +17,16 @@ const duration = ref(0);
 </template>
 
 <style scoped lang="scss">
+label {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
 .duration-input {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
+
 }
 </style>
