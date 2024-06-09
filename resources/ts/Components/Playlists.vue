@@ -51,7 +51,7 @@ onMounted(async () => {
 
         <!-- Selected playlists -->
         <DataTable
-            v-if="selectedPlaylists.length > 0"
+            v-if="selectedPlaylists && selectedPlaylists.length > 0"
             :value="selectedPlaylists"
             class="playlist-table"
             scrollable scrollHeight="400px" :virtualScrollerOptions="{ itemSize: 46 }"
