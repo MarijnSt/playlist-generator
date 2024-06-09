@@ -2,6 +2,7 @@
 import { Head } from '@inertiajs/vue3';
 import Greeting from "../Components/Greeting.vue";
 import Playlists from "../Components/Playlists.vue";
+import Duration from "@/Components/Duration.vue";
 
 const props = defineProps({
     user: Object
@@ -14,6 +15,7 @@ const props = defineProps({
     </Head>
     <Greeting :user="user" />
     <Playlists v-if="user"/>
+    <Duration />
 </template>
 
 <style scoped>

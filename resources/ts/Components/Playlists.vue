@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { PlaylistData } from "@/types/generated";
+import {PlaylistData, PlaylistsData} from "@/types/generated";
 import axios from 'axios';
 import LoadingSpinner from "./LoadingSpinner.vue";
 
 const loading = ref(true);
 
 const playlists = ref<PlaylistData[]>([]);
-const selectedPlaylists = ref();
+const selectedPlaylists = ref<PlaylistData[]>();
 
 onMounted(async () => {
     // get playlists
