@@ -3,6 +3,7 @@
 use App\Actions\Auth\LoginWithSpotify;
 use App\Actions\Auth\Logout;
 use App\Actions\Index\RenderIndex;
+use App\Actions\Spotify\GeneratePlaylist;
 use App\Actions\Spotify\GetUsersPlaylists;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -23,4 +24,5 @@ Route::prefix('auth')->group(function () {
 
 Route::prefix('spotify')->group(function () {
     Route::get('playlists', GetUsersPlaylists::class)->name('spotify.playlists');
+    Route::post('generate', GeneratePlaylist::class)->name('spotify.generate');
 });

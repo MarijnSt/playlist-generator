@@ -1,10 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { usePlaylistsStore } from "@/store";
+import axios from "axios";
 
 const loading = ref(false);
+const store = usePlaylistsStore();
 
 const generatePlaylist = () => {
     loading.value = true;
+    console.log('lists', store.selectedPlaylists)
+    console.log('length', store.playlistLength)
+    axios.post('/spotify/generate', {
+        length: store.playlistLength,
+        playlists: store.selectedPlaylists
+    })
     //TODO: add call to generate playlist
     setTimeout(() => {
         loading.value = false;
@@ -16,7 +25,7 @@ const generatePlaylist = () => {
 <template>
 <div class="component-container">
     <Button
-        type="button" label="Search" icon="pi pi-search"
+        type="button" label="Generate" icon="pi pi-cog"
         class="generate-button"
         :loading="loading"
         @click="generatePlaylist"

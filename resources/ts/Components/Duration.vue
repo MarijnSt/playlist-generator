@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { usePlaylistsStore } from "@/store";
 
 const store = usePlaylistsStore();
-const duration = ref(0);
-
+const duration = computed({
+    get: () => store.playlistLength,
+    set: (value) => store.playlistLength = value
+});
 </script>
 
 <template>

@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 import { usePlaylistsStore } from "@/store";
-import {PlaylistData, PlaylistsData} from "@/types/generated";
+import { PlaylistData } from "@/types/generated";
 import axios from 'axios';
 import LoadingSpinner from "./LoadingSpinner.vue";
 
 const store = usePlaylistsStore();
 const loading = ref(true);
 const playlists = computed<PlaylistData[]>(() => store.playlists);
-//const selectedPlaylists = computed<PlaylistData[]>(() => store.selectedPlaylists);
 const selectedPlaylists = computed<PlaylistData[]>({
     get: () => store.selectedPlaylists,
     set: (value) => store.selectedPlaylists = value,
@@ -18,11 +17,8 @@ onMounted(async () => {
     // get playlists
     try {
         const response = await axios.get('/spotify/playlists');
-        console.log(response.data)
-        console.log(store.selectedPlaylists)
         store.playlists = response.data.playlists;
         loading.value = false;
-        console.log(store)
     } catch (error) {
         console.error(error)
     }
