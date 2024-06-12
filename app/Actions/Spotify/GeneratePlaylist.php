@@ -5,8 +5,6 @@ namespace App\Actions\Spotify;
 use App\Data\Spotify\GenerateData;
 use App\Services\Spotify;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 class GeneratePlaylist
@@ -68,8 +66,6 @@ class GeneratePlaylist
                 $this->offset += $this->limit;
             } while ($data['next']);
         }
-
-        /*return $tracks;*/
 
         return array_map(function($song) {
             return [
