@@ -13,6 +13,10 @@ const generatePlaylist = () => {
     axios.post('/spotify/generate', {
         length: store.playlistLength,
         playlists: store.selectedPlaylists
+    }).then(res => {
+        console.log('res', res)
+    }).catch(error => {
+        console.error('generate error', error)
     })
     //TODO: add call to generate playlist
     setTimeout(() => {

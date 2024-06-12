@@ -3,11 +3,8 @@
 namespace Tests\Feature\Spotify;
 
 use App\Actions\Spotify\GetUsersPlaylists;
-use App\Data\Spotify\PlaylistData;
-use App\Data\Spotify\PlaylistsData;
 use App\Models\User;
 use App\Services\Spotify;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
