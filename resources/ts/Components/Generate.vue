@@ -8,20 +8,19 @@ const store = usePlaylistsStore();
 
 const generatePlaylist = () => {
     loading.value = true;
-    console.log('lists', store.selectedPlaylists)
-    console.log('length', store.playlistLength)
     axios.post('/spotify/generate', {
         length: store.playlistLength,
         playlists: store.selectedPlaylists
     }).then(res => {
         console.log('res', res)
+        store.generatedPlaylist = res.data
     }).catch(error => {
         console.error('generate error', error)
+    }).finally(() => {
+        setTimeout(() => {
+            loading.value = false;
+        }, 2000);
     })
-    //TODO: add call to generate playlist
-    setTimeout(() => {
-        loading.value = false;
-    }, 2000);
 }
 
 </script>

@@ -69,7 +69,19 @@ class GeneratePlaylist
             } while ($data['next']);
         }
 
-        return $tracks;
+        /*return $tracks;*/
+
+        return array_map(function($song) {
+            return [
+                'id' => $song['track']['id'],
+                'uri' => $song['track']['uri'],
+                'name' => $song['track']['name'],
+                'artist' => $this->formatArtist($song['track']['artists']),
+                'duration_ms' => $song['track']['duration_ms'],
+                'duration_formatted' => $this->formatDuration($song['track']['duration_ms']),
+                'image' => $song['track']['album']['images'][1]['url']
+            ];
+        }, $tracks);
     }
 
     private function createPlaylist(array $tracks, int $length): array
@@ -89,10 +101,32 @@ class GeneratePlaylist
             if (!in_array($index, $usedIndexes)) {
                 $usedIndexes[] = $index;
                 $playlist[] = $tracks[$index];
-                $currentLength += $tracks[$index]['track']['duration_ms'];
+                $currentLength += $tracks[$index]['duration_ms'];
             }
         }
 
         return $playlist;
+    }
+
+    private function formatArtist(array $artists): string
+    {
+        // get the names out of artists array
+        $names = array_map(function($artist) {
+            return $artist['name'];
+        }, $artists);
+
+        // implode names array into comma seperated string
+        return implode(", ", $names);
+    }
+
+    private function formatDuration(int $duration_ms): string
+    {
+        // get total number of seconds
+        $totalSeconds = $duration_ms / 1000;
+
+        // calculate the minutes and seconds
+        $minutes = floor($totalSeconds / 60);
+        $seconds = $totalSeconds % 60;
+        return $minutes . ':' . sprintf("%02d", $seconds);
     }
 }
