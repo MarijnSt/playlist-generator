@@ -13,7 +13,7 @@ Route::get('/', RenderIndex::class)->name('dashboard');
 
 Route::prefix('auth')->group(function () {
     Route::get('/spotify', fn() => Socialite::driver('spotify')
-        ->scopes(['user-read-email', 'user-read-private', 'playlist-read-private', 'playlist-modify-public'])
+        ->scopes(['user-read-email', 'user-read-private', 'playlist-read-private', 'playlist-modify-public', 'playlist-modify-private'])
         ->redirect())
         ->name('auth.spotify');
     Route::get('/spotify/callback', LoginWithSpotify::class)->name('auth.spotify.callback');

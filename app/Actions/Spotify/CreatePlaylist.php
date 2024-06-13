@@ -19,7 +19,7 @@ class CreatePlaylist
     public function handle(string $user_id, CreateData $data): void
     {
         // create playlist
-        $this->createPlaylistInSpotify($user_id, $data->name);
+        $playlist_id = $this->createPlaylistInSpotify($user_id, $data->name);
 
         // add songs
     }
@@ -37,7 +37,7 @@ class CreatePlaylist
     }
 
     // create playlist in spotify
-    private function createPlaylistInSpotify(string $user_id, string $name):void
+    private function createPlaylistInSpotify(string $user_id, string $name): string
     {
         $response = $this->spotify->request(
             method: 'POST',
@@ -51,6 +51,6 @@ class CreatePlaylist
             $response->throw();
         }
 
-        Log::info(json_encode($response));
+        return $response['id'];
     }
 }
