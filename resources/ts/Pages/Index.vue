@@ -5,6 +5,7 @@ import Playlists from "../Components/Playlists.vue";
 import Duration from "@/Components/Duration.vue";
 import Generate from "@/Components/Generate.vue";
 import { usePlaylistsStore } from "@/store";
+import GeneratedPlaylist from "@/Components/GeneratedPlaylist.vue";
 
 const store = usePlaylistsStore();
 
@@ -24,6 +25,9 @@ const props = defineProps({
             <template v-if="store.selectedPlaylists.length > 0">
                 <Duration/>
                 <Generate/>
+            </template>
+            <template v-if="store.generatedPlaylist.length > 0">
+                <GeneratedPlaylist/>
             </template>
         </template>
     </div>

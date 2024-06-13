@@ -17,9 +17,7 @@ const generatePlaylist = () => {
     }).catch(error => {
         console.error('generate error', error)
     }).finally(() => {
-        setTimeout(() => {
-            loading.value = false;
-        }, 2000);
+        loading.value = false;
     })
 }
 
@@ -28,7 +26,7 @@ const generatePlaylist = () => {
 <template>
 <div class="component-container">
     <Button
-        type="button" label="Generate" icon="pi pi-cog"
+        type="button" label="Generate"
         class="generate-button"
         :loading="loading"
         @click="generatePlaylist"
