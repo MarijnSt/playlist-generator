@@ -7,11 +7,13 @@ export const usePlaylistsStore = defineStore( 'playlists', () => {
     const selectedPlaylists = ref<PlaylistData[]>([]);
     const playlistLength = ref(0);
     const generatedPlaylist = ref<SongData[]>([]);
+    const playlistName = ref('');
 
     return {
         playlists,
         selectedPlaylists,
         playlistLength,
-        generatedPlaylist
+        generatedPlaylist,
+        playlistName
     };
 });

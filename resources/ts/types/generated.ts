@@ -1,3 +1,6 @@
+export type CreateData = {
+    name: string;
+};
 export type GenerateData = {
     length: number;
     playlists: Array<PlaylistsData>;
@@ -17,6 +20,7 @@ export type SongData = {
     uri: string;
     name: string;
     artist: string;
-    duration: string;
-    image: string | null;
+    duration_ms: string;
+    duration_formatted: string;
+    image: string;
 };

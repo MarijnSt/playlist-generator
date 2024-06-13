@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { usePlaylistsStore } from "@/store";
 const store = usePlaylistsStore();
-console.log(store.generatedPlaylist)
 </script>
 
 <template>

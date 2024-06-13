@@ -36,7 +36,7 @@ class LoginWithSpotify
         ]);
 
         // authenticate user
-        Auth::login($user, remember: true);
+        Auth::login($user);
 
         // redirect to dashboard
         return redirect()->route('dashboard');
