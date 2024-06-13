@@ -14,7 +14,7 @@ console.log(store.generatedPlaylist)
     >
         <Column headerStyle="width: 5rem">
             <template #body="slotProps">
-                <img :src="slotProps.data.image" :alt="slotProps.data.name" class="w-6rem playlist-image" />
+                <img :src="slotProps.data.image" :alt="slotProps.data.name" class="rounded-image" />
             </template>
         </Column>
         <Column field="name"></Column>
