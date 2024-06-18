@@ -14,7 +14,8 @@ const loading = ref(false);
 const submit = () => {
     loading.value = true;
     axios.post('/spotify/create', {
-        name: store.playlistName
+        name: store.playlistName,
+        uris: store.generatedPlaylist.map(song => song.uri)
     }).then(res => {
         console.log('create res', res)
     }).catch(error => {

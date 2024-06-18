@@ -11,4 +11,6 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 class CreateData extends Data
 {
     public string $name;
+
+    public array $uris;
 }
