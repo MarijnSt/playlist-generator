@@ -9,6 +9,8 @@ import { createPinia } from 'pinia';
 
 // Import PrimeVue UI Theme
 import 'primevue/resources/themes/aura-light-green/theme.css'
+// Import Prime Icons
+import 'primeicons/primeicons.css';
 // Import PrimeVue UI Components
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';

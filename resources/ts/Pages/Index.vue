@@ -4,11 +4,12 @@ import Greeting from "../Components/Greeting.vue";
 import Playlists from "../Components/Playlists.vue";
 import Duration from "@/Components/Duration.vue";
 import Generate from "@/Components/Generate.vue";
-import { usePlaylistsStore } from "@/store";
 import GeneratedPlaylist from "@/Components/GeneratedPlaylist.vue";
 import CreatePlaylist from "@/Components/CreatePlaylist.vue";
 import PlaylistLink from "@/Components/PlaylistLink.vue";
+import Footer from "@/Components/Footer.vue";
 
+import { usePlaylistsStore } from "@/store";
 const store = usePlaylistsStore();
 
 const props = defineProps({
@@ -35,6 +36,7 @@ const props = defineProps({
             <PlaylistLink v-if="store.playlistLink"/>
         </template>
     </div>
+    <Footer/>
 </template>
 
 <style scoped>
