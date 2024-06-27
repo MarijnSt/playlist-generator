@@ -2,7 +2,7 @@
 
 use App\Actions\Auth\LoginWithSpotify;
 use App\Actions\Auth\Logout;
-use App\Actions\Index\RenderIndex;
+use App\Actions\Pages\RenderIndex;
 use App\Actions\Spotify\GetUsersPlaylists;
 use App\Actions\Spotify\GeneratePlaylist;
 use App\Actions\Spotify\CreatePlaylist;

@@ -8,12 +8,14 @@ export const usePlaylistsStore = defineStore( 'playlists', () => {
     const playlistLength = ref(0);
     const generatedPlaylist = ref<SongData[]>([]);
     const playlistName = ref('');
+    const playlistLink = ref('');
 
     return {
         playlists,
         selectedPlaylists,
         playlistLength,
         generatedPlaylist,
-        playlistName
+        playlistName,
+        playlistLink
     };
 });

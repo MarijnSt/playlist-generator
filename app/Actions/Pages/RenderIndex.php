@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Actions\Index;
+namespace App\Actions\Pages;
 
-use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Inertia\Response;
 use Lorisleiva\Actions\Concerns\AsAction;

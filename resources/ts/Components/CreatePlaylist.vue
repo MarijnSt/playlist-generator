@@ -17,7 +17,7 @@ const submit = () => {
         name: store.playlistName,
         uris: store.generatedPlaylist.map(song => song.uri)
     }).then(res => {
-        console.log('create res', res)
+        store.playlistLink = res.data.playlist_link;
     }).catch(error => {
         console.error('create error', error)
     }).finally(() => {
@@ -28,7 +28,7 @@ const submit = () => {
 
 <template>
     <div class="component-container">
-        <h3>Add your playlist to your Spotify</h3>
+        <h3>Save this playlist in your Spotify</h3>
         <form @submit.prevent="submit">
             <InputText type="text" v-model="playlistName" />
             <Button

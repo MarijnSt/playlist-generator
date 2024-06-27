@@ -7,6 +7,7 @@ import Generate from "@/Components/Generate.vue";
 import { usePlaylistsStore } from "@/store";
 import GeneratedPlaylist from "@/Components/GeneratedPlaylist.vue";
 import CreatePlaylist from "@/Components/CreatePlaylist.vue";
+import PlaylistLink from "@/Components/PlaylistLink.vue";
 
 const store = usePlaylistsStore();
 
@@ -18,7 +19,7 @@ const props = defineProps({
 <template>
     <div class="app-container">
         <Head>
-            <title>Home</title>
+            <title>Playlist Generator</title>
         </Head>
         <Greeting :user="user" />
         <template v-if="user">
@@ -31,6 +32,7 @@ const props = defineProps({
                 <GeneratedPlaylist />
                 <CreatePlaylist />
             </template>
+            <PlaylistLink v-if="store.playlistLink"/>
         </template>
     </div>
 </template>
