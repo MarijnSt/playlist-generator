@@ -22,7 +22,7 @@ function logout() {
         </div>
         <div v-else>
             <h3>Ready {{ user.name }}? Let's go!</h3>
-            <Button @click="logout" label="Logout" />
+            <Button v-ripple @click="logout" label="Logout" />
         </div>
     </div>
 </template>

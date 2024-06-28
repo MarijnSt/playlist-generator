@@ -28,7 +28,6 @@ onMounted(async () => {
 <template>
     <div class="component-container">
         <LoadingSpinner v-if="loading"/>
-        <!-- Unselected playlists -->
         <DataTable
             v-else
             :value="playlists"
@@ -36,7 +35,6 @@ onMounted(async () => {
             selectionMode="multiple"
             :metaKeySelection="false"
             dataKey="id"
-            paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]"
             class="playlist-table">
 
             <template #header>
@@ -52,24 +50,6 @@ onMounted(async () => {
             </Column>
             <Column field="name" header="Name"></Column>
         </DataTable>
-
-        <!-- Selected playlists TODO: MOVE TO SEPARATE COMPONENT -->
-<!--        <DataTable
-            v-if="selectedPlaylists && selectedPlaylists.length > 0"
-            :value="selectedPlaylists"
-            v-model:selection="selectedPlaylists"
-            selectionMode="multiple"
-            :metaKeySelection="false"
-            dataKey="id"
-            scrollable scrollHeight="400px" :virtualScrollerOptions="{ itemSize: 46 }"
-            class="playlist-table selection">
-            <Column headerStyle="width: 5rem">
-                <template #body="slotProps">
-                    <img :src="slotProps.data.image" :alt="slotProps.data.name" class="rounded-image" />
-                </template>
-            </Column>
-            <Column field="name"></Column>
-        </DataTable>-->
     </div>
 </template>
 

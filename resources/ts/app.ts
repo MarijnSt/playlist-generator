@@ -7,11 +7,10 @@ import { ZiggyVue } from 'ziggy-js';
 import PrimeVue from 'primevue/config';
 import { createPinia } from 'pinia';
 
-// Import PrimeVue UI Theme
+// PrimeVue Imports
 import 'primevue/resources/themes/aura-light-green/theme.css'
-// Import Prime Icons
 import 'primeicons/primeicons.css';
-// Import PrimeVue UI Components
+import Ripple from 'primevue/ripple';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';
@@ -19,6 +18,7 @@ import Row from 'primevue/row';
 import InputNumber from 'primevue/inputnumber';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
+import Chip from 'primevue/chip';
 
 // import styling
 import "@scss/index.scss";
@@ -36,7 +36,8 @@ createInertiaApp({
             .use(plugin)
             .use(pinia)
             .use(ZiggyVue)
-            .use(PrimeVue)
+            .use(PrimeVue, { ripple: true })
+            .directive('ripple', Ripple)
             .component('DataTable', DataTable)
             .component('Column', Column)
             .component('ColumnGroup', ColumnGroup)
@@ -44,6 +45,7 @@ createInertiaApp({
             .component('InputNumber', InputNumber)
             .component('InputText', InputText)
             .component('Button', Button)
+            .component('Chip', Chip)
             .mount(el)
     },
 })
