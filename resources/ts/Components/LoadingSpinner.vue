@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div class="loading"></div>
+<div class="loading-spinner"></div>
 </template>
 
 <style scoped lang="scss">
@@ -16,7 +16,7 @@
     }
 }
 
-.loading {
+.loading-spinner {
     width: 2rem;
     height: 2rem;
     border: 3px solid black;

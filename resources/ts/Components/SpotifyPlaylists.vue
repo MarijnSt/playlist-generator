@@ -26,10 +26,11 @@ onMounted(async () => {
 </script>
 
 <template>
-    <LoadingSpinner v-if="loading"/>
-    <div v-else class="component-container">
+    <div class="component-container">
+        <LoadingSpinner v-if="loading"/>
         <!-- Unselected playlists -->
         <DataTable
+            v-else
             :value="playlists"
             v-model:selection="selectedPlaylists"
             selectionMode="multiple"
@@ -40,7 +41,8 @@ onMounted(async () => {
 
             <template #header>
                 <div class="table-header">
-                    <span class="title">Your playlists</span>
+                    <span class="title">Your Spotify playlists</span>
+                    <span class="subtitle">Select the ones you want to use or select them all</span>
                 </div>
             </template>
             <Column header="" headerStyle="width: 5rem">
@@ -51,8 +53,8 @@ onMounted(async () => {
             <Column field="name" header="Name"></Column>
         </DataTable>
 
-        <!-- Selected playlists -->
-        <DataTable
+        <!-- Selected playlists TODO: MOVE TO SEPARATE COMPONENT -->
+<!--        <DataTable
             v-if="selectedPlaylists && selectedPlaylists.length > 0"
             :value="selectedPlaylists"
             v-model:selection="selectedPlaylists"
@@ -67,10 +69,19 @@ onMounted(async () => {
                 </template>
             </Column>
             <Column field="name"></Column>
-        </DataTable>
+        </DataTable>-->
     </div>
 </template>
 
 <style scoped lang="scss">
+.component-container {
+    .table-header {
+        flex-direction: column;
+        margin-bottom: 2rem;
 
+        .subtitle {
+            font-weight: 200;
+        }
+    }
+}
 </style>

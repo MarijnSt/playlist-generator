@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
 import Greeting from "../Components/Greeting.vue";
-import Playlists from "../Components/Playlists.vue";
+import Playlists from "../Components/SpotifyPlaylists.vue";
 import Duration from "@/Components/Duration.vue";
 import Generate from "@/Components/Generate.vue";
 import GeneratedPlaylist from "@/Components/GeneratedPlaylist.vue";
