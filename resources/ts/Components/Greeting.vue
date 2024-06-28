@@ -13,14 +13,16 @@ function logout() {
 <template>
     <div class="component-container">
         <h1>Playlist Generator</h1>
-        <p>This tool will look at your spotify profile and generate a playlist for you based on your saved playlists and songs.</p>
+        <p>Create a new playlist with random songs from all your saved Spotify playlists</p>
         <div v-if="!user">
             <p>To generate a playlist, you'll need to connect your Spotify profile</p>
-            <a :href="route('auth.spotify')"><button>Login with Spotify</button></a>
+            <a :href="route('auth.spotify')">
+                <Button label="Login with Spotify" />
+            </a>
         </div>
         <div v-else>
             <h3>Ready {{ user.name }}? Let's go!</h3>
-            <button @click="logout">Logout</button>
+            <Button @click="logout" label="Logout" />
         </div>
     </div>
 </template>
