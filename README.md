@@ -1,9 +1,9 @@
 ## About project
-
-This project is a simple implementation of the spotify API to create playlists for when I go for a run.
+When I go for a run, I like to listen to music or podcasts that I saved on my watch. 
+The problem is that most of my playlists are really long so downloading it would take ages and would take up a lot of space on my watch.
+That's why I wanted to write a simple app that lets me generate a playlist of a certain length that consists of random songs picked from all of my playlists (or at least the ones I selected).
 
 ## Tech used
-
 - Laravel: authentication, spotify API, laravel actions and data objects
 - Inertia: connects Vue and Laravel
 - Vue: frontend with Primevue UI components
@@ -11,9 +11,9 @@ This project is a simple implementation of the spotify API to create playlists f
 - Pinia: state management
 
 ## Requirements
-You need to have a spotify account and create a new app in the spotify developer dashboard.
+If you want to run this locally, you need to have a Spotify account and create a new app in the Spotify developer dashboard.
 After that you can get the client id and client secret and set them in the .env file.
-You can look at [this](https://developer.spotify.com/documentation/web-api/tutorials/getting-started) guide to create a new app.
+You can look at [this](https://developer.spotify.com/documentation/web-api/tutorials/getting-started) guide for more info on how to create a new app.
 
 ## How to install
 - cp .env.example .env
@@ -43,12 +43,10 @@ This will create or update the resources/js/types/generated.ts file which you ca
 - [Pinia](https://pinia.vuejs.org/introduction.html)
 
 ## TODO
-- Show the user's playlists on the front
-- Get all songs from the user's playlists
-...
-- Let the user select playlists to be used to generate the new playlist
-- Let the user specify the length of the new playlist
-- Generate a new playlist by randomly selecting songs from those playlists
-- Let the user swap out songs they don't like
-- Save the playlist to their spotify account
-- Check refresh token flow
+- Add icon and animation on hover to delete playlist in SelectedPlaylists.vue
+- Add prettier
+- Change theme
+- Check for bigger screen sizes
+- Hosting
+- Add button to select all playlists
+- Add functionality to remove or swap out playlists from GeneratedPlaylist
