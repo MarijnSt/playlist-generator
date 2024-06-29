@@ -4,8 +4,7 @@ import { usePrimeVue } from 'primevue/config';
 import Header from "../Components/Header.vue";
 import SpotifyPlaylists from "../Components/SpotifyPlaylists.vue";
 import SelectedPlaylists from "../Components/SelectedPlaylists.vue";
-import Duration from "@/Components/Duration.vue";
-import Generate from "@/Components/Generate.vue";
+import PlaylistLength from "@/Components/PlaylistLength.vue";
 import GeneratedPlaylist from "@/Components/GeneratedPlaylist.vue";
 import CreatePlaylist from "@/Components/CreatePlaylist.vue";
 import PlaylistLink from "@/Components/PlaylistLink.vue";
@@ -32,8 +31,7 @@ const props = defineProps({
             <SpotifyPlaylists />
             <SelectedPlaylists />
             <template v-if="store.selectedPlaylists.length > 0">
-                <Duration/>
-                <Generate/>
+                <PlaylistLength />
             </template>
             <template v-if="store.generatedPlaylist.length > 0">
                 <GeneratedPlaylist />
