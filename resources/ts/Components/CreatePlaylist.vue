@@ -28,7 +28,10 @@ const submit = () => {
 
 <template>
     <div class="component-container">
-        <h3>Save this playlist in your Spotify</h3>
+        <div class="component-header">
+            <h3 class="title">Looking good?</h3>
+            <p class="subtitle">Give your playlist a name and save it in your Spotify</p>
+        </div>
         <form @submit.prevent="submit">
             <InputText type="text" v-model="playlistName" />
             <Button
@@ -41,5 +44,15 @@ const submit = () => {
 </template>
 
 <style scoped lang="scss">
+.component-container {
+    form {
+        /*display: flex;
+        flex-direction: column;*/
 
+        .generate-button {
+            display: block;
+            margin: 1.5rem auto 0;
+        }
+    }
+}
 </style>

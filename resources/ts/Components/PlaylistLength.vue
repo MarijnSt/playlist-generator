@@ -29,8 +29,9 @@ const generatePlaylist = () => {
 
 <template>
     <div class="component-container">
-        <h3>How long do you want your playlist to be?</h3>
-<!--        <label for="playlist-length" class="font-bold block mb-2"></label>-->
+        <div class="component-header">
+            <h3 class="title">How long do you want your playlist to be?</h3>
+        </div>
         <form @submit.prevent="generatePlaylist">
             <div class="length-input">
                 <InputNumber v-model="duration" inputId="playlist-length" />
@@ -46,10 +47,6 @@ const generatePlaylist = () => {
 </template>
 
 <style scoped lang="scss">
-/*label {
-    font-weight: bold;
-    margin-bottom: 1rem;
-}*/
 .component-container {
     .length-input {
         display: flex;
