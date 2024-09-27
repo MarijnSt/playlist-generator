@@ -3,7 +3,9 @@ When I go for a run, I like to listen to music or podcasts that I saved on my wa
 The problem is that most of my playlists are really long so downloading it would take ages and would take up a lot of space on my watch.
 That's why I wanted to write a simple app that lets me generate a playlist of a certain length that consists of random songs picked from all of my playlists (or at least the ones I selected).
 
-*This is a work in progress and I'm adding new features whenever I have some free time to work on the project. It also serves as a demo project for me to showcase my skills.*
+*This is a work in progress and I'm adding new features whenever I have some free time to work on the project. It also serves as a demo project for me to showcase some of my skills.*
+
+You can have a look at a live version of the project [here](http://128.199.33.85/).
 
 ### Tech used
 - Laravel: authentication, spotify API, laravel actions and data objects
